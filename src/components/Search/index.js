@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Search = ({ handleSearch }) => (
+const Search = ({ isDisabled, handleSearch }) => (
 
   <div className="search">
     <input 
       type="search" 
       placeholder="Digite o nome do usuário no GitHub"
+      disabled={ isDisabled }
       onKeyUp={ handleSearch }
     />
   </div>

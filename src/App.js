@@ -53,7 +53,7 @@ class App extends Component {
 
     if ( keyCode === ENTER ) {
 
-      target.disabled = true;
+      this.setState({ isFetching: true });
 
       fetch(this.getGitHubApiUrl(value))
         .then(res => res.json())
@@ -66,10 +66,9 @@ class App extends Component {
               repos: res.public_repos,
               followers: res.followers,
               following: res.following
-            }
+            },
+            isFetching: false
           })
-
-          target.disabled = false;
         })
         .catch(err => console.log(err));
     }
@@ -84,6 +83,7 @@ class App extends Component {
         userInfo={ userInfo }
         repos={ repos }
         starred={ starred }
+        isFetching={ this.state.isFetching }
         handleSearch={ e => this.handleSearch(e) }
         getRepos={ this.getRepos('repos') }
         getStarred={ this.getRepos('starred') }
