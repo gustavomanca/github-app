@@ -13,6 +13,8 @@ class App extends Component {
       repos: [],
       starred: []
     }
+
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   getGitHubApiUrl (username, type) {
@@ -76,15 +78,10 @@ class App extends Component {
 
   render() {
 
-    const { userInfo, repos, starred } = this.state;
-    
     return (
       <AppContent 
-        userInfo={ userInfo }
-        repos={ repos }
-        starred={ starred }
-        isFetching={ this.state.isFetching }
-        handleSearch={ e => this.handleSearch(e) }
+        {...this.state}
+        handleSearch={ this.handleSearch }
         getRepos={ this.getRepos('repos') }
         getStarred={ this.getRepos('starred') }
       />
